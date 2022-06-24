@@ -29,8 +29,11 @@ while True:
 
     if choix == "1":
         option = input("Entrez le nom d'un élément à ajouter à la liste de course : ").capitalize()
-        liste.append(option)  # ajoute le contenu de la variable option à liste[] -> fichier course.json
-        print(f"L'élément '{option}' à bien été ajouter à la liste")
+        if option in liste:
+            print(f"{option} est déjà dans la liste")
+        else:
+            liste.append(option)  # ajoute le contenu de la variable option à liste[] -> fichier course.json
+            print(f"L'élément '{option}' à bien été ajouter à la liste")
 
     elif choix == "2":
         option = input("Quel élément voulez-vous retirer de la liste ? : ").capitalize()
