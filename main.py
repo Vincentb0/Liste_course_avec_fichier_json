@@ -1,13 +1,18 @@
 """
 La liste des courses.
 """
-
+import os
 import json
 
-course = "course.json"
+# vérification de la l'existence du fichier sur le disque
+CURRENT_DIR = os.path.dirname(__file__)
+CHEMIN_LISTE = os.path.join(CURRENT_DIR, "course.json")
 
-with open(course, "r") as f:  # Pour lire le fichier au début du programme et le fermer
-    liste = json.load(f)
+if os.path.exists(CHEMIN_LISTE):
+    with open(CHEMIN_LISTE, "r") as f:  # Pour lire le fichier au début du programme et le fermer
+        liste = json.load(f)
+else:
+    liste = []
 
 choix = ""
 option = ""
@@ -52,7 +57,7 @@ while True:
     elif choix == "5":  # seule possibilité de sortir de la boucle et donc du programme
         print("A bientôt")
         # A la fermeture du programme, on sauvegarde la liste dans le fichier course.json
-        with open(course, "w") as f:
+        with open(CHEMIN_LISTE, "w") as f:
             json.dump(liste, f, indent=4, ensure_ascii=False)  # ensure_ascii pour les caractères accentués
         break
     else:  # si la valeur de la variable choix est différente de 1, 2, 3, 4, 5 -> message d'erreur
