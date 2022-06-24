@@ -4,7 +4,7 @@ La liste des courses.
 import os
 import json
 
-# vérification de la l'existence du fichier sur le disque
+# vérification de l'existence du fichier sur le disque
 CURRENT_DIR = os.path.dirname(__file__)
 CHEMIN_LISTE = os.path.join(CURRENT_DIR, "course.json")
 
@@ -44,9 +44,9 @@ while True:
         print("Contenu de votre liste :")
         if not liste:  # si la liste est vide
             print("votre liste est vide")
-        else:  # sinon on parcous la liste et affiche les "clés et valeurs" (index et nom)
+        else:  # sinon on parcous la liste
+            numero = 1
             for i in liste:
-                numero = 1
                 print(f"{numero} -> {i}")
                 numero += 1
 
@@ -55,11 +55,12 @@ while True:
         print("Votre liste à été supprimé")
 
     elif choix == "5":  # seule possibilité de sortir de la boucle et donc du programme
-        print("A bientôt")
         # A la fermeture du programme, on sauvegarde la liste dans le fichier course.json
         with open(CHEMIN_LISTE, "w") as f:
             json.dump(liste, f, indent=4, ensure_ascii=False)  # ensure_ascii pour les caractères accentués
+        print("A bientôt")
         break
+
     else:  # si la valeur de la variable choix est différente de 1, 2, 3, 4, 5 -> message d'erreur
         print()
         print("ERREUR : Veuillez faire un choix parmi les 5 options !")
